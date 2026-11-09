@@ -1,7 +1,6 @@
 export const config = {
   runtime: 'edge',
 };
-
 export default async function handler(request) {
   const TARGET_URL = 'https://cataas.com/cat/thug/';
 

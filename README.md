@@ -1,2 +1,2 @@
 # cat-api
-api bruh
+GET /api/cat 

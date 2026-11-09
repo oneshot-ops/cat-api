@@ -18,7 +18,7 @@ export default async function handler(request) {
       status: 200,
       headers: {
         'Content-Type': contentType,
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+        'Cache-Control': 'no-store',
       },
     });
 

@@ -11,9 +11,8 @@ export default async function handler(request) {
       return new Response(`Error: ${response.statusText}`, { status: response.status });
     }
 
-    const imageBuffer = await response.image.original.url.arrayBuffer();
+    const imageBuffer = JSON.parse(await response).image.original.url.arrayBuffer();
     const contentType = response.headers.get('content-type') || 'image/jpeg';
-    imageBuffer = JSON.parse(imageBuffer);
 
     return new Response(imageBuffer, {
       status: 200,

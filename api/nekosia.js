@@ -13,9 +13,9 @@ export default async function handler(request) {
 
     const imageBuffer = await response.arrayBuffer();
     const contentType = response.headers.get('content-type') || 'image/jpeg';
-    imageBuffer = JSON.parse(imageBuffer).image.original.url;
+    imageBuffer = JSON.parse(imageBuffer);
 
-    return new Response(imageBuffer, {
+    return new Response(imageBuffer.image.original.url, {
       status: 200,
       headers: {
         'Content-Type': contentType,

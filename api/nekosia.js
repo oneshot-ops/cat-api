@@ -1,20 +1,22 @@
 export const config = {
   runtime: 'edge',
 };
-export default async function handler(request) {
-  const TARGET_URL = 'https://api.nekosia.cat/api/v1/images/catgirl';
+export default async function handler() {
 
   try {
-    const response = await fetch(TARGET_URL);
+    const axios = require('axios');
 
-    if (!response.ok) {
-      return new Response(`Error: ${response.statusText}`, { status: response.status });
-    }
-
-    const imageBuffer = await response.arrayBuffer();
-    const contentType = response.headers.get('content-type') || 'image/jpeg';
-
-    return new Response(imageBuffer, {
+    const fetchNekoImage = async () => {
+       try {
+          const res = await axios.get('https://api.nekosia.cat/api/v1/images/catgirl');
+          const json = res.data;
+      
+          return json.image.original.url;
+       } catch (err) {
+          console.error(err.message);
+       }
+    };
+    return new Response(fetchNekoImage, {
       status: 200,
       headers: {
         'Content-Type': contentType,
@@ -29,3 +31,6 @@ export default async function handler(request) {
     });
   }
 }
+
+
+

@@ -1,7 +1,12 @@
 export const config = {
   runtime: 'edge',
 };
-export default async function handler(request) {
+/**
+ * Handler function for fetching a random catgirl image from the Nekosia API.
+ * @param {Request} _request - The incoming HTTP request (unused).
+ * @returns {Promise<Response>} The HTTP response containing the image or an error message.
+ */
+export default async function handler(_request) {
   const TARGET_URL = 'https://api.nekosia.cat/api/v1/images/catgirl';
 
   try {
@@ -11,9 +16,13 @@ export default async function handler(request) {
       return new Response(`Error: ${response.statusText}`, { status: response.status });
     }
 
-    const imageBuffer = await response.arrayBuffer();
-    const contentType = response.headers.get('content-type') || 'image/jpeg';
-    imageBuffer = JSON.parse(imageBuffer).image.original.url;
+    const data = await response.json();
+    const imageUrl = data.image.original.url;
+
+    // Fetch the image binary data
+    const imageResponse = await fetch(imageUrl);
+    const imageBuffer = await imageResponse.arrayBuffer();
+    const contentType = imageResponse.headers.get('content-type') || 'application/octet-stream';
 
     return new Response(imageBuffer, {
       status: 200,
@@ -30,5 +39,4 @@ export default async function handler(request) {
     });
   }
 }
-
 

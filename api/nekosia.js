@@ -13,6 +13,7 @@ export default async function handler(request) {
 
     const imageBuffer = await response.arrayBuffer();
     const contentType = response.headers.get('content-type') || 'image/jpeg';
+    imageBuffer = JSON.parse(imageBuffer).image.original.url
 
     return new Response(imageBuffer, {
       status: 200,
@@ -29,3 +30,4 @@ export default async function handler(request) {
     });
   }
 }
+

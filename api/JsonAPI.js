@@ -8,11 +8,8 @@ export default async function handler(request) {
   try {
     const response = await fetch(TARGET_URL);
     const reponseNekosia = await fetch(TARGET_URL_NEKOSIA);
-
-    if (!response.ok && !reponseNekosia.ok) {
-      return new Response(`Error: ${response.statusText}`, { status: response.status });
-    }
-    let api = JSON.parse(api.json);
+    
+    const api = JSON.parse(api.json);
     api.first_port = reponseNekosia;
     api.second_port = response;
 

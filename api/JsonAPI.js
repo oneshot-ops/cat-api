@@ -2,14 +2,17 @@ export const config = {
   runtime: 'edge',
 };
 export default async function handler(request) {
-  const TARGET_URL = 'cat.js';
-  const TARGET_URL_NEKOSIA = 'nekosia.js';
+  const TARGET_URL = 'api.cat';
+  const TARGET_URL_NEKOSIA = 'api.nekosia';
 
   try {
     const response = await fetch(TARGET_URL);
     const reponseNekosia = await fetch(TARGET_URL_NEKOSIA);
-    
-    const api = JSON.parse(api.json);
+
+    if (!response.ok && !reponseNekosia.ok) {
+      return new Response(`Error: ${response.statusText}`, { status: response.status });
+    }
+    let api = JSON.parse(api.json);
     api.first_port = reponseNekosia;
     api.second_port = response;
 

@@ -2,8 +2,8 @@ export const config = {
   runtime: 'edge',
 };
 export default async function handler(request) {
-  const TARGET_URL = 'api.cat';
-  const TARGET_URL_NEKOSIA = 'api.nekosia';
+  const TARGET_URL = 'api/cat.js';
+  const TARGET_URL_NEKOSIA = 'api/nekosia.js';
 
   try {
     const response = await fetch(TARGET_URL);

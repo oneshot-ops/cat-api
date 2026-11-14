@@ -1,4 +1,10 @@
-/*export default async function handler(_request) {
+export const config = {
+    runtime: 'edge',
+};
+
+
+
+export default async function handler(_request) {
     const api = {
         first_port: "https://cat-api-blond.vercel.app/api/cat",
         second_port: "https://nekosia.vercel.app/api/nekosia",
@@ -10,10 +16,4 @@
             "Content-Type": "application/json"
         }
     });
-}*/
-export const config = {
-    runtime: 'edge',
-};
-export default function handler(request) {
-    return new Response("API fonctionne !");
 }

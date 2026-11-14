@@ -1,8 +1,8 @@
 export default async function handler(_request) {
     const api = {
-        first_port: "URL_CAT",
-        second_port: "URL_NEKOSIA",
-        third_port: "URL_AUTRE"
+        first_port: "https://cat-api-blond.vercel.app/api/cat",
+        second_port: "https://nekosia.vercel.app/api/nekosia",
+        third_port: "https://autre-api.vercel.app/api/autre"
     };
 
     return new Response(JSON.stringify(api), {

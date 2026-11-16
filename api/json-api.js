@@ -6,7 +6,7 @@ export const config = {
 
 export default async function handler(_request) {
     const api = {
-        first_port: "https://cat-api-blond.vercel.app/api/cat",
+        first_port: "false",
         second_port: "https://cat-api-blond.vercel.app/api/nekosia",
         third_port: "https://cat-api-blond.vercel.app/api/autre"
     };
